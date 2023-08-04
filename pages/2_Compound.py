@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
-
+from ..utils.predict import predict_permeability
 
 # setting the title of our app
 # st.title("Skin Permeability")
@@ -20,28 +20,18 @@ import numpy as np
 
 data = pd.read_csv('./data/final/clean_trial4.csv')
 
-model_filename = "./models/LGBMRegressor_model.sav"
-model = pickle.load(open(model_filename, 'rb'))
-
-
-scaler_filename = pickle.load(open('./models/scaler.pkl', 'rb'))
-
-
 compound_names = list(data['Compound'].unique())
 compound = st.selectbox("Select Compound", compound_names)
 st.write('The Compound you entered is: ', compound)
 st.sidebar.markdown("# Compound")
 
-def predict_permeability():
+def get_compound():
     # search the disease # removing three columns
     compound_df = data[data['Compound'] == compound].iloc[0, 3:].values
   
     compound_df = np.reshape(compound_df, (1, -1))
-    scaled = scaler_filename.transform(compound_df)
-    
-    predicted = model.predict(scaled)[0]
-    predicted = round(predicted, 2)
 
+    predicted = predict_permeability(compound_df)
 
     st.success("Permeability:\n {}".format(predicted))
     
