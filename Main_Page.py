@@ -19,12 +19,12 @@ image = Image.open('./images/skin_permeablity.png')
 
 st.image(image,  width=400)
 
-st.sidebar.markdown("# Choose Smiles or Compound")
+st.sidebar.markdown("# Main Page")
 st.markdown("### Explore our Features using the Left Side Bar")
 
 options_markdown = """
 - You predict the permeability of compounds using compound names & smiles.
-- On the left side bar, select either the smiles structure or compound name.
+- On the left side bar, navigate to Start Here.
 """
 st.markdown(options_markdown)
 # see desaisiv dashboard and improve
