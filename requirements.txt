@@ -137,7 +137,6 @@ PyPDF2==2.9.0
 PyQt5==5.15.7
 PyQt5-sip==12.11.0
 pyrsistent==0.18.0
-PySocks==1.7.1
 pywin32==305.1
 pyxlsb==1.0.10
 PyYAML==6.0
