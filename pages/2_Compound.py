@@ -2,7 +2,10 @@ import streamlit as st
 import pickle
 import pandas as pd
 import numpy as np
-from ..utils.predict import predict_permeability
+import sys
+import sys
+sys.path.append('../')
+from utils.predict import predict_permeability
 
 # setting the title of our app
 # st.title("Skin Permeability")
@@ -36,4 +39,4 @@ def get_compound():
     st.success("Permeability:\n {}".format(predicted))
     
 
-st.button("Predict Permeability", on_click=predict_permeability)
+st.button("Predict Permeability", on_click=get_compound)
