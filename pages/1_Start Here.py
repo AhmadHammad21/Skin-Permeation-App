@@ -6,11 +6,7 @@ import sys
 from utils.predict import *
 from t1 import *
 
-# file uploader
-st.set_page_config(
-    page_title="Skin Permeability",
-    page_icon="👋",
-)
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 # setting the title of our app
 st.title("Skin Permeability Model")
