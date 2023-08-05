@@ -3,6 +3,8 @@ import pickle
 import pandas as pd
 import numpy as np
 import sys
+
+sys.path.append('../')
 from utils.predict import *
 from t1 import *
 
@@ -10,8 +12,6 @@ from t1 import *
 st.set_option('deprecation.showPyplotGlobalUse', False)
 # setting the title of our app
 st.title("Skin Permeability Model")
-
-sys.path.append('../')
 
 
 data = get_data()
