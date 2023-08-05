@@ -28,24 +28,24 @@ scaler_filename = "./models/scaler.pkl"
 
 # draw_molecule_matplotlib("C(=O)(N)N")
 
-@st.experimental_memo
+@st.cache_data
 def get_data() -> pd.DataFrame:
     print("loading data")
     return pd.read_csv(dataset_path)
 
 
-@st.experimental_memo
+@st.cache_data
 def get_data_cols() -> list:
     return pd.read_csv(dataset_cols_path).columns[3:]
 
 
-@st.experimental_memo
+@st.cache_data
 def load_scaler():
     print("loading scaler")
     return pickle.load(open(scaler_filename, 'rb'))
 
 
-@st.experimental_memo
+@st.cache_data
 def load_model():
     print("loading model")
     return pickle.load(open(model_filename, 'rb'))
