@@ -5,7 +5,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 from rdkit import Chem
 from rdkit.Chem import Draw
-# fix CHEM mshan allah
+# fix CHEM mshan allah rdkit==2023.3.2
 
 
 def draw_molecule_matplotlib(smiles):
