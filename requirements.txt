@@ -90,8 +90,6 @@ MarkupSafe==2.1.1
 matplotlib==3.6.2
 matplotlib-inline==0.1.6
 mdurl==0.1.0
-mkl-random==1.2.2
-mkl-service==2.4.0
 mlxtend==0.21.0
 multidict==6.0.2
 munkres==1.1.4
