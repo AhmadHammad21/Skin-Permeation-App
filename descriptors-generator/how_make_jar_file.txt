@@ -1,0 +1,27 @@
+
+
+First Make Java file
+
+Open CMD
+
+
+javac -d ./ *.java
+jar cvf extract_descriptors.jar extract_descriptors.class
+
+
+from jdk4py import JAVA, JAVA_HOME, JAVA_VERSION
+import os
+os.system(str(JAVA)+" -cp extract_descriptors.jar extract_descriptors H2O")
+
+
+
+
+
+
+
+
+
+
+
+
+
