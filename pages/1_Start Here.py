@@ -5,7 +5,7 @@ import numpy as np
 import sys
 sys.path.append('../')
 from utils.predict import *
-from t1 import *
+from convert_java_to_python import extract_descriptors
 
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -22,33 +22,37 @@ if option == "Smiles":
     smiles_flag = True
 
     smiles = st.text_input('Enter your Compound in Smiles Structure', placeholder="C(=O)(N)N", value="C(=O)(N)N")
-    st.write('The Smile you entered is: ', smiles)
 else:
     compound_names = list(data['Name'].unique())
     compound = st.selectbox("Select Compound", compound_names)
-    st.write('The Compound you entered is: ', compound)
 
 st.sidebar.markdown("# Predict Permeability")
+
+
+# if not smiles is entered, we fetch the smile
+# else we get extract clean smiles and descriptors
+if not smiles_flag:
+    smiles = data[data['Name'] == compound]['SMILES'].values[0]
+else:
+    smiles, descriptors = extract_descriptors(smiles)
 
 
 def get_compound(smiles_flag=False):
     # search the disease # removing three columns
     if smiles_flag:
-        st.success("Permeability: not yet {}")
-        # st.success("Permeability:\n {}".format(extract_descriptors(compound)))
+        # list of descriptors
+        compound_df = descriptors
     else:        
         # search for compound
         compound_df = data[data['Name'] == compound]
     
-        predicted = predict_permeability(compound_df)
+    predicted = predict_permeability(compound_df, new_smiles=smiles_flag)
 
-        st.success("Permeability:\n {}".format(predicted))
-    
+    st.success("Permeability:\n {}".format(predicted))
+
 
 st.button("Predict Permeability", on_click=get_compound, args=(smiles_flag, ))
 
-# if not smiles is entered, we fetch the smile
-if not smiles_flag:
-    smiles = data[data['Name'] == compound]['SMILES'].values[0]
+# drawing image of compound
 molecule_img = draw_molecule_matplotlib(smiles)
 st.image(molecule_img, width=400)

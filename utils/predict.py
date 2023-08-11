@@ -51,6 +51,8 @@ def load_model():
     return pickle.load(open(model_filename, 'rb'))
 
 
+all_data = get_data()
+
 cols_used = get_data_cols()
 
 model = load_model()
@@ -58,9 +60,22 @@ model = load_model()
 scaler = load_scaler()
 
 
-def predict_permeability(compound_df: pd.DataFrame) -> float:
-    compound_df['Texpi'] = 310
-    compound_df = compound_df[cols_used]
+def predict_permeability(compound_df: pd.DataFrame, new_smiles=False) -> float:
+    if new_smiles:
+        # exlcuding texpi
+        temp_cols = cols_used[1:]
+        
+        column_indices = [all_data.columns.get_loc(col) - 1 for col in temp_cols]
+
+        # we added index 0, since we added temperature (texpi), when generating this smile
+        column_indices.insert(0, 0)
+    
+        # filtering on indices
+        compound_df = np.array(compound_df)[column_indices]
+        
+    else:
+        compound_df['Texpi'] = 310
+        compound_df = compound_df[cols_used]
     
     compound_df = np.reshape(compound_df, (1, -1))
     scaled = scaler.transform(compound_df)
