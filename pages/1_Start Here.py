@@ -34,8 +34,8 @@ st.sidebar.markdown("# Predict Permeability")
 def get_compound(smiles_flag=False):
     # search the disease # removing three columns
     if smiles_flag:
-        
-        st.success("Permeability:\n {}".format(extract_descriptors(compound)))
+        st.success("Permeability: not yet {}")
+        # st.success("Permeability:\n {}".format(extract_descriptors(compound)))
     else:        
         # search for compound
         compound_df = data[data['Name'] == compound]
@@ -47,6 +47,6 @@ def get_compound(smiles_flag=False):
 
 st.button("Predict Permeability", on_click=get_compound, args=(smiles_flag, ))
 
-# if smiles_flag:
-#     molecule_img = draw_molecule_matplotlib(compound)
-#     st.image(molecule_img, width=400)
+if smiles_flag:
+    molecule_img = draw_molecule_matplotlib(compound)
+    st.image(molecule_img, width=400)

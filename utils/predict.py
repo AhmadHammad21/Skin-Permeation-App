@@ -3,18 +3,18 @@ import pickle
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-# from rdkit import Chem
-# from rdkit.Chem import Draw
+from rdkit import Chem
+from rdkit.Chem import Draw
 # fix CHEM mshan allah rdkit==2023.3.2
 
 
-# def draw_molecule_matplotlib(smiles):
-#     molecule = Chem.MolFromSmiles(smiles)
-#     if molecule is not None:
-#         img = Draw.MolToImage(molecule)
-#         return img
-#     else:
-#         print("Invalid SMILES string provided.")
+def draw_molecule_matplotlib(smiles):
+    molecule = Chem.MolFromSmiles(smiles)
+    if molecule is not None:
+        img = Draw.MolToImage(molecule)
+        return img
+    else:
+        print("Invalid SMILES string provided.")
 
 # file uploader
 dataset_path = './data/raw/DrugBank-descriptors.csv'
