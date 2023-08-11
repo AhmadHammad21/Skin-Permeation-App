@@ -1,3 +1,3 @@
 libxrender1
 patchelf
-default-jdk
+default-jre-headless
