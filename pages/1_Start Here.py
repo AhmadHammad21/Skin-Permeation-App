@@ -21,8 +21,8 @@ smiles_flag = False
 if option == "Smiles":
     smiles_flag = True
 
-    compound = st.text_input('Enter your Compound in Smiles Structure', placeholder="C(=O)(N)N", value="C(=O)(N)N")
-    st.write('The Smile you entered is: ', compound)
+    smiles = st.text_input('Enter your Compound in Smiles Structure', placeholder="C(=O)(N)N", value="C(=O)(N)N")
+    st.write('The Smile you entered is: ', smiles)
 else:
     compound_names = list(data['Name'].unique())
     compound = st.selectbox("Select Compound", compound_names)
@@ -47,6 +47,8 @@ def get_compound(smiles_flag=False):
 
 st.button("Predict Permeability", on_click=get_compound, args=(smiles_flag, ))
 
-if smiles_flag:
-    molecule_img = draw_molecule_matplotlib(compound)
-    st.image(molecule_img, width=400)
+# if not smiles is entered, we fetch the smile
+if not smiles_flag:
+    smiles = data[data['Name'] == compound]['SMILES'].values[0]
+molecule_img = draw_molecule_matplotlib(smiles)
+st.image(molecule_img, width=400)
