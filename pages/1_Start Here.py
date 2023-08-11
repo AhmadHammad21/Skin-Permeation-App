@@ -5,6 +5,8 @@ import numpy as np
 import sys
 sys.path.append('../')
 from utils.predict import *
+import os
+print("Files", os.listdir())
 from convert_java_to_python import extract_descriptors
 
 
