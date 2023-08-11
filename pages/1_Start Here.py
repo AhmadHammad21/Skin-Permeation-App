@@ -47,6 +47,6 @@ def get_compound(smiles_flag=False):
 
 st.button("Predict Permeability", on_click=get_compound, args=(smiles_flag, ))
 
-if smiles_flag:
-    molecule_img = draw_molecule_matplotlib(compound)
-    st.image(molecule_img, width=400)
+# if smiles_flag:
+#     molecule_img = draw_molecule_matplotlib(compound)
+#     st.image(molecule_img, width=400)
