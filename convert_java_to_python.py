@@ -5,6 +5,8 @@ import os
 
 def extract_descriptors(smiles: str):
     command = "java -jar DescriptorsGeneratorCLI-1.0.0.jar {}".format(smiles)
+    print("command")
+    print(command)
     generated_descriptors = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout
     
     descriptors_list = str(generated_descriptors).split(",")
